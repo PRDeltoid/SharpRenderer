@@ -15,7 +15,7 @@ namespace SharpRendererLib
             (point1, point2) = (point2, point1);
         }
 
-        public static double GetSlope(Point point1, Point point2)
+        public static double CalculateSlope(Point point1, Point point2)
         {
             //Special case: A horizontal line has zero slope
             if (point1.Y == point2.Y) return 0;

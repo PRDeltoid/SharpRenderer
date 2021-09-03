@@ -16,7 +16,7 @@ namespace SharpRendererLibTests
         public void ThrowsWhen_EitherPointOutOfBounds(int x1, int y1, int x2, int y2)
         {
             LineDrawer lineDrawer = new(new DrawStrategyStub());
-            Assert.Throws<Exception>(() => lineDrawer.DrawLine(new PixelBuffer(10, 10), new Point(x1,x1), new Point(x2,y2)));
+            Assert.Throws<Exception>(() => lineDrawer.DrawLine(new PixelBuffer(10, 10), new Point(x1,x1), new Point(x2,y2), Color.Empty));
         }
         
         [Test]
@@ -26,7 +26,7 @@ namespace SharpRendererLibTests
         public void ThrowsWhen_PointsAreTheSame(int x1, int y1, int x2, int y2)
         {
             LineDrawer lineDrawer = new(new DrawStrategyStub());
-            Assert.Throws<Exception>(() => lineDrawer.DrawLine(new PixelBuffer(10, 10), new Point(x1,x1), new Point(x2,y2)));
+            Assert.Throws<Exception>(() => lineDrawer.DrawLine(new PixelBuffer(10, 10), new Point(x1,x1), new Point(x2,y2), Color.Empty));
         }
         
         [Test]
@@ -37,7 +37,7 @@ namespace SharpRendererLibTests
         public void DoesNotThrow_WhenPointsInBounds(int x1, int y1, int x2, int y2)
         {
             LineDrawer lineDrawer = new(new DrawStrategyStub());
-            lineDrawer.DrawLine(new PixelBuffer(10, 10), new Point(x1,x1), new Point(x2,y2));
+            lineDrawer.DrawLine(new PixelBuffer(10, 10), new Point(x1,x1), new Point(x2,y2), Color.Empty);
         }
         
         private class DrawStrategyStub : ILineDrawStrategy

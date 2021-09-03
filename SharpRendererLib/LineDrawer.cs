@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Drawing;
-using System.Runtime.InteropServices;
 
 namespace SharpRendererLib
 {
     public class LineDrawer
     {
         private readonly ILineDrawStrategy _drawStrategy;
-        private readonly Color _lineColor;
 
-        public LineDrawer(ILineDrawStrategy drawStrategy, Color? lineColor = null)
+        public LineDrawer(ILineDrawStrategy drawStrategy)
         {
             _drawStrategy = drawStrategy ?? throw new ArgumentNullException(nameof(drawStrategy));
-            // Default color is aqua if no color is passed
-            _lineColor = lineColor ?? Color.Aqua;
         }
 
-        public void DrawLine(PixelBuffer pixelBuffer, Point point1, Point point2)
+        public void DrawLine(PixelBuffer pixelBuffer, Point point1, Point point2, Color color)
         {
             int width = pixelBuffer.Width;
             int height = pixelBuffer.Height;
@@ -42,7 +38,7 @@ namespace SharpRendererLib
             for (int drawX = point1.X; drawX < point2.X; drawX++)
             {
                 int drawY = _drawStrategy.DetermineY(drawX, point1, point2);
-                pixelBuffer.SetPixel(drawX, drawY, _lineColor);
+                pixelBuffer.SetPixel(drawX, drawY, color);
             }
         }
     }

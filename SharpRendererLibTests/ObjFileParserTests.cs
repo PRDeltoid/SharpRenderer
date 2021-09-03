@@ -10,10 +10,10 @@ namespace SharpRendererLibTests
         [Test]
         [TestCase("teapot.obj")]
         [TestCase("african_head.obj")]
-        public void ObjFileParserTests_OpenTeapotFile_ReturnsObjContainer(string objFileName)
+        public void ObjFileParserTests_OpenFile_ReturnsObjContainer(string objFileName)
         {
             ObjFileParser parser = new();
-            string path = Path.Combine("../../../res", "teapot.obj");
+            string path = Path.Combine("../../../res", objFileName);
             Polygon parsedFile = parser.ParseFile(path);
         }
         

@@ -7,18 +7,14 @@ namespace SharpRendererConsole
 {
     class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             const int width = 10;
             const int height = 10;
             PixelBuffer pixelBuff = new PixelBuffer(width, height);
-            for (int x = 0; x < 10; x++)
-            {
-                for (int y = 0; y < 10; y++)
-                {
-                    if(x==y) pixelBuff.SetPixel(x,y,Color.Aqua);
-                } 
-            }
+
+            LineDrawer lineDrawer = new LineDrawer(new BresenhamLineDrawStrategy(), Color.Magenta);
+            lineDrawer.DrawLine(pixelBuff, new Point(3,3), new Point(9,9));
 
             Bitmap bitmap = Draw(pixelBuff);
             string outPath = Path.Combine(Path.GetTempPath(), "test.bmp");

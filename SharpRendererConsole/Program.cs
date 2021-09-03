@@ -13,10 +13,13 @@ namespace SharpRendererConsole
             const int height = 90;
             PixelBuffer pixelBuff = new PixelBuffer(width, height);
             LineDrawer lineDrawer = new LineDrawer(new BresenhamLineDrawStrategy());
+            Line line1 = new(new Point(13,20), new Point(80,40));
+            Line line2 = new(new Point(13,20), new Point(80,40));
+            Line line3 = new(new Point(13,20), new Point(80,40));
             
-            lineDrawer.DrawLine(pixelBuff, new Point(13,20), new Point(80,40), Color.White);
-            lineDrawer.DrawLine(pixelBuff, new Point(20,13), new Point(40,80), Color.Magenta);
-            lineDrawer.DrawLine(pixelBuff, new Point(80,40), new Point(13,20), Color.Aqua);
+            lineDrawer.DrawLine(pixelBuff, line1, Color.White);
+            lineDrawer.DrawLine(pixelBuff, line2, Color.Magenta);
+            lineDrawer.DrawLine(pixelBuff, line3, Color.Aqua);
 
             Bitmap bitmap = Draw(pixelBuff);
             string outPath = Path.Combine(Path.GetTempPath(), "test.bmp");

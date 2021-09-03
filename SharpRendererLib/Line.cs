@@ -28,7 +28,6 @@ namespace SharpRendererLib
                 // This swap ensures that point1 is always further left
                 PointHelper.SwapPoints(ref point1, ref point2);
             }
-            
 
             Slope = PointHelper.CalculateSlope(point1, point2);
         }

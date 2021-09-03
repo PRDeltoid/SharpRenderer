@@ -9,12 +9,14 @@ namespace SharpRendererConsole
     {
         private static void Main(string[] args)
         {
-            const int width = 10;
-            const int height = 10;
+            const int width = 90;
+            const int height = 90;
             PixelBuffer pixelBuff = new PixelBuffer(width, height);
-
-            LineDrawer lineDrawer = new LineDrawer(new BresenhamLineDrawStrategy(), Color.Magenta);
-            lineDrawer.DrawLine(pixelBuff, new Point(3,3), new Point(9,9));
+            LineDrawer lineDrawer = new LineDrawer(new BresenhamLineDrawStrategy());
+            
+            lineDrawer.DrawLine(pixelBuff, new Point(13,20), new Point(80,40), Color.White);
+            lineDrawer.DrawLine(pixelBuff, new Point(20,13), new Point(40,80), Color.Magenta);
+            lineDrawer.DrawLine(pixelBuff, new Point(80,40), new Point(13,20), Color.Aqua);
 
             Bitmap bitmap = Draw(pixelBuff);
             string outPath = Path.Combine(Path.GetTempPath(), "test.bmp");

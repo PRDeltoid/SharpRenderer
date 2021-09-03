@@ -61,5 +61,31 @@ namespace SharpRendererLibTests
 
             Assert.AreEqual(expectedSlope, PointHelper.CalculateSlope(point1, point2));
         }
+
+        [Test]
+        [TestCase(1, 1, 1, 100, 0)]
+        [TestCase(1, 1, 5, 100, 4)]
+        [TestCase(1, 1, 10, 100, 9)]
+        [TestCase(1, 1, 30, 100, 29)]
+        public void DistanceX_ReturnsCorrectValue(int x1, int y1, int x2, int y2, double expectedDistance)
+        {
+            Point point1 = new Point(x1, y1);
+            Point point2 = new Point(x2, y2);
+
+            Assert.AreEqual(expectedDistance, PointHelper.DistanceX(point1, point2)); 
+        }
+        
+        [Test]
+        [TestCase(1, 1, 100, 1, 0)]
+        [TestCase(1, 1, 100, 5, 4)]
+        [TestCase(1, 1, 100, 10, 9)]
+        [TestCase(1, 1, 100, 30, 29)]
+        public void DistanceY_ReturnsCorrectValue(int x1, int y1, int x2, int y2, double expectedDistance)
+        {
+            Point point1 = new Point(x1, y1);
+            Point point2 = new Point(x2, y2);
+
+            Assert.AreEqual(expectedDistance, PointHelper.DistanceY(point1, point2));  
+        }
     }
 }

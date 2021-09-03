@@ -24,5 +24,15 @@ namespace SharpRendererLib
             
             return (point2.Y - point1.Y) / (double)(point2.X - point1.X);
         }
+
+        public static int DistanceX(Point point1, Point point2)
+        {
+            return point2.X - point1.X;
+        }
+        
+        public static int DistanceY(Point point1, Point point2)
+        {
+            return point2.Y - point1.Y;
+        }
     }
 }

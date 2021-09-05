@@ -15,6 +15,13 @@ namespace SharpRendererLib
             (point1, point2) = (point2, point1);
         }
 
+        public static void TransposeXY(ref Point point1)
+        {
+            // Swap X and Y values 
+            // This can be reversed by calling this function again
+            (point1.X, point1.Y) = (point1.Y, point1.X);
+        }
+
         public static double CalculateSlope(Point point1, Point point2)
         {
             //Special case: A horizontal line has zero slope

@@ -34,6 +34,18 @@ namespace SharpRendererLibTests
             Assert.AreEqual(x2, point1.X);
             Assert.AreEqual(y2, point1.Y);
         }
+        
+        [Test]
+        [TestCase(2, 1)]
+        [TestCase(1, 2)]
+        public void TransposeXY_ValuesTransposed(int x1, int y1)
+        {
+            Point point = new Point(x1, y1);
+            
+            PointHelper.TransposeXY(ref point);
+            Assert.AreEqual(x1, point.Y);
+            Assert.AreEqual(y1, point.X);
+        }
 
         [Test]
         [TestCase(1, 1, 3, 1, 0)]

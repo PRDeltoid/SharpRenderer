@@ -11,12 +11,6 @@ namespace SharpRendererLib
 
         public Line(Point point1, Point point2)
         {
-            // Make sure the points can form a line
-            if (point1 == point2) throw new Exception("Failed to create line. Both points are the same."); 
-            
-            Point1 = point1;
-            Point2 = point2;
-            
             // Our line object always holds our line in left-to-right orientation (smallest X to largest X)
             if (point1.X > point2.X)
             {
@@ -24,6 +18,9 @@ namespace SharpRendererLib
                 PointHelper.SwapPoints(ref point1, ref point2);
             }
 
+            Point1 = point1;
+            Point2 = point2;
+            
             Slope = PointHelper.CalculateSlope(point1, point2);
         }
     }

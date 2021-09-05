@@ -6,7 +6,6 @@ namespace SharpRendererLib
     public class Line
     {
         public double Slope { get; }
-        public bool IsSteep { get; }
         public Point Point1 { get; }
         public Point Point2 { get; }
 
@@ -17,10 +16,6 @@ namespace SharpRendererLib
             
             Point1 = point1;
             Point2 = point2;
-            
-            int xAbs = PointHelper.DistanceX(point1, point2);
-            int yAbs = PointHelper.DistanceY(point1, point2);
-            IsSteep = xAbs < yAbs; 
             
             // Our line object always holds our line in left-to-right orientation (smallest X to largest X)
             if (point1.X > point2.X)

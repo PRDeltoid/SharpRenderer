@@ -31,7 +31,7 @@ namespace SharpRendererLib
         /// <exception cref="Exception">Exception thrown if <paramref name="x"/> or <paramref name="y"/> are out of the pixel buffers boundaries (Width-1 and Height-1 respectively)</exception>
         public void SetPixel(int x, int y, Color color)
         {
-            if (x >= Width || y >= Height) throw new Exception($"Attempt to write pixel outside of PixelBuffer boundaries W: {Width} H: {Height}");
+            if (x >= Width || y >= Height) throw OutOfBoundsSetException(x, y);
             Pixels[x,y] = color;
         }
 
@@ -45,8 +45,18 @@ namespace SharpRendererLib
         /// <exception cref="Exception">Exception thrown if <paramref name="x"/> or <paramref name="y"/> are out of the pixel buffers boundaries</exception>
         public Color GetPixel(int x, int y)
         {
-            if (x >= Width || y >= Height) throw new Exception($"Attempt to get pixel outside of PixelBuffer boundaries W: {Width} H: {Height}");
+            if (x >= Width || y >= Height) throw OutOfBoundsGetException(x, y);
             return Pixels[x, y];
+        }
+
+        Exception OutOfBoundsGetException(int x, int y)
+        {
+            return new Exception($"Attempt to get pixel ({x},{y}) outside of PixelBuffer boundaries W: {Width} H: {Height}");
+        }
+        
+        Exception OutOfBoundsSetException(int x, int y)
+        {
+            return new Exception($"Attempt to set pixel ({x},{y}) outside of PixelBuffer boundaries W: {Width} H: {Height}");
         }
     }
 }

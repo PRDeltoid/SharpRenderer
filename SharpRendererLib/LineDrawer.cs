@@ -20,7 +20,7 @@ namespace SharpRendererLib
             if (PointHelper.IsOutOfBounds(width, height, line.Point1) ||
                 PointHelper.IsOutOfBounds(width, height, line.Point2))
             {
-                throw new Exception("One of the provided points is out of bounds");
+                throw new Exception($"One of the provided points is out of bounds. Boundary: ({width-1}, {height-1}). Line goes from ({line.Point1.X}, {line.Point1.Y}) to ({line.Point2.X}, {line.Point1.X}).");
             }
             
             // Let our line draw strat determine where to place pixels

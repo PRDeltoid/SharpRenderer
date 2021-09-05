@@ -22,6 +22,9 @@ namespace SharpRendererLibTests
         
         [Test]
         [TestCase(11,11)]
+        [TestCase(-11,11)]
+        [TestCase(11,-11)]
+        [TestCase(-11,-11)]
         [TestCase(10,10)]
         public void SetPixel_OutOfBounds_ShouldThrow(int x, int y)
         {
@@ -31,6 +34,9 @@ namespace SharpRendererLibTests
         
         [Test]
         [TestCase(11,11)]
+        [TestCase(-11,11)]
+        [TestCase(11,-11)]
+        [TestCase(-11,-11)]
         [TestCase(10,10)]
         public void GetPixel_OutOfBounds_ShouldThrow(int x, int y)
         {

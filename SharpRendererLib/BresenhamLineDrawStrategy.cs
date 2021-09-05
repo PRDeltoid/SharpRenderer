@@ -9,6 +9,7 @@ namespace SharpRendererLib
             double slope = PointHelper.CalculateSlope(point1, point2);
             double yValue = slope * (x - point1.X) + (point1.Y);
             return Convert.ToInt32(yValue);
+        }
 
         public void Initialize()
         {

@@ -1,9 +1,12 @@
-﻿using System.Drawing;
-
-namespace SharpRendererLib
+﻿namespace SharpRendererLib
 {
-    public interface ILineDrawStrategy
+    public interface ILineDrawStrategy : IInitializable
     {
         int DetermineY(int x, Line line);
+    }
+
+    public interface IInitializable
+    {
+        void Initialize();
     }
 }

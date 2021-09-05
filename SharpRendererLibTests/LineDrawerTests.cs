@@ -40,6 +40,11 @@ namespace SharpRendererLibTests
             {
                 return 0;
             }
+
+            public void Initialize()
+            {
+                return;
+            }
         }
     }
 

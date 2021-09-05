@@ -22,15 +22,10 @@ namespace SharpRendererLib
             {
                 throw new Exception("One of the provided points is out of bounds");
             }
-
-            // Initialize our draw strategy so it is ready for a new line to be drawn (in case it tracks values internally)
-            _drawStrategy.Initialize();
             
-            for (int drawX = line.Point1.X; drawX < line.Point2.X; drawX++)
-            {
-                int drawY = _drawStrategy.DetermineY(drawX, line);
-                pixelBuffer.SetPixel(drawX, drawY, color);
-            }
+            // Let our line draw strat determine where to place pixels
+            _drawStrategy.CallOnAllDrawPoints(line, (drawX, drawY) => 
+                    pixelBuffer.SetPixel(drawX, drawY, color));
         }
     }
 }

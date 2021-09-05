@@ -36,14 +36,8 @@ namespace SharpRendererLibTests
         
         private class DrawStrategyStub : ILineDrawStrategy
         {
-            public int DetermineY(int x, Line line)
+            public void CallOnAllDrawPoints(Line line, Action<int, int> drawFunc)
             {
-                return 0;
-            }
-
-            public void Initialize()
-            {
-                return;
             }
         }
     }

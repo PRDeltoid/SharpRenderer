@@ -1,12 +1,9 @@
-﻿namespace SharpRendererLib
-{
-    public interface ILineDrawStrategy : IInitializable
-    {
-        int DetermineY(int x, Line line);
-    }
+﻿using System;
 
-    public interface IInitializable
+namespace SharpRendererLib
+{
+    public interface ILineDrawStrategy
     {
-        void Initialize();
+        void CallOnAllDrawPoints(Line line, Action<int, int> drawFunc);
     }
 }

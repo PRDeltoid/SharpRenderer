@@ -7,10 +7,14 @@ namespace SharpRendererLib
     {
         public void CallOnAllDrawPoints(Line line, Action<int, int> drawFunc)
         {
-            bool isSteep = line.Slope > 0.5;
+            bool isSteep = line.Slope > 1;
 
             Point p1 = line.Point1;
             Point p2 = line.Point2;
+            if (p1.X > p2.X)
+            {
+                throw new Exception($"Line is pointing the wrong direction. P1: ({p1.X},{p1.Y}),  P2:({p2.X},{p2.Y}).");
+            }
 
             if (isSteep)
             {
@@ -20,7 +24,14 @@ namespace SharpRendererLib
                 PointHelper.TransposeXY(ref p2);
             }
 
-            for (int drawX = p1.X; drawX < p2.X; drawX++)
+            // If our line is a single point, just draw the point and exit without looping
+            if (p1 == p2)
+            {
+                drawFunc.Invoke(p1.X, p1.Y);
+                return;
+            }
+
+            for (int drawX = p1.X; drawX <= p2.X; drawX++)
             {
                 // How far we've "traveled" down the line
                 double tick = (drawX - line.Point1.X) / (double)PointHelper.DistanceX(line.Point1, line.Point2);

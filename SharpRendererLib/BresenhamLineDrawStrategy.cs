@@ -15,6 +15,7 @@ namespace SharpRendererLib
                 throw new Exception($"Line is pointing the wrong direction. P1: ({p1.X},{p1.Y}),  P2:({p2.X},{p2.Y}).");
             }
 
+            // A slope above 1 or below -1 has a greater rise over run. It is considered "steep"
             bool isSteep = line.Slope is > 1 or < -1;
             if (isSteep)
             {
@@ -22,6 +23,9 @@ namespace SharpRendererLib
                 // We can transpose a steep line to make it shallow, run the algo, and then swap it back at draw-time
                 PointHelper.TransposeXY(ref p1);
                 PointHelper.TransposeXY(ref p2);
+                
+                // If we transposed the values, our points may now be out-of-order
+                // This makes sure the line orientation is left-to-right
                 if (line.Slope < -1)
                 {
                     PointHelper.SwapPoints(ref p1, ref p2);
@@ -37,10 +41,12 @@ namespace SharpRendererLib
 
             for (int drawX = p1.X; drawX <= p2.X; drawX++)
             {
-                // How far we've "traveled" down the line
                 int dist = PointHelper.DistanceX(p1, p2);
                 int deltaX = drawX - p1.X;
+                // How far we've "traveled" down the line
                 double time = deltaX / (double)dist;
+                // If our line has no X movement (ie. dist = 0), it is a straight vertical line
+                // time = 0 produces a straight vertical line
                 if (double.IsNaN(time))
                 {
                     time = 0.0;

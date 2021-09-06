@@ -9,19 +9,25 @@ namespace SharpRendererConsole
     {
         private static void Main(string[] args)
         {
-            const int width = 90;
-            const int height = 90;
+            // Setup the draw space
+            const int width = 1000;
+            const int height = 1000;
             PixelBuffer pixelBuff = new PixelBuffer(width, height);
-            LineDrawer lineDrawer = new LineDrawer(new BresenhamLineDrawStrategy());
-            Line line1 = new(new Point(13,20), new Point(80,40));
-            Line line2 = new(new Point(13,20), new Point(80,40));
-            Line line3 = new(new Point(13,20), new Point(80,40));
-            
-            lineDrawer.DrawLine(pixelBuff, line1, Color.White);
-            lineDrawer.DrawLine(pixelBuff, line2, Color.Magenta);
-            lineDrawer.DrawLine(pixelBuff, line3, Color.Aqua);
 
+            LineDrawer lineDrawer = new LineDrawer(new BresenhamLineDrawStrategy());
+            
+            // Load the polygon to render
+            ObjFileParser parser = new();
+            string path = Path.Combine("../../../res", "african_head.obj");
+            Polygon parsedFile = parser.ParseFile(path); 
+            
+            // Render the polygon as a wiremesh
+            WireMeshPolygonDrawer polygonDrawer = new WireMeshPolygonDrawer(new BresenhamLineDrawStrategy());
+            polygonDrawer.Draw(pixelBuff, parsedFile, 600, 600, new Point(200,200), Color.White);
+
+            // Output to a bitmap
             Bitmap bitmap = Draw(pixelBuff);
+            bitmap.RotateFlip(RotateFlipType.Rotate180FlipNone);
             string outPath = Path.Combine(Path.GetTempPath(), "test.bmp");
             bitmap.Save(outPath);
             OpenImage(outPath);

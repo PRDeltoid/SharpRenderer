@@ -34,8 +34,10 @@ namespace SharpRendererLib
             for (int drawX = p1.X; drawX <= p2.X; drawX++)
             {
                 // How far we've "traveled" down the line
-                double tick = (drawX - line.Point1.X) / (double)PointHelper.DistanceX(line.Point1, line.Point2);
-                int drawY = (int)(p1.Y * (1.0 - tick) + p2.Y * tick);
+                int dist = PointHelper.DistanceX(p1, p2);
+                int deltaX = drawX - line.Point1.X;
+                double time = deltaX / (double)dist;
+                int drawY = (int)(p1.Y * (1.0 - time) + p2.Y * time);
 
                 if (isSteep)
                 {

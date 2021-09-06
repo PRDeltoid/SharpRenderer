@@ -24,9 +24,7 @@ namespace SharpRendererLib
 
         private void DrawFace(PixelBuffer pixelBuffer, Polygon polygon, Face face, Color color, int halfWidth, int halfHeight, Point startPoint)
         {
-            Vertex vert1 = polygon.Vertices[face.Indices[0].Vertex];
-            Vertex vert2 = polygon.Vertices[face.Indices[1].Vertex];
-            Vertex vert3 = polygon.Vertices[face.Indices[2].Vertex];
+            (Vertex vert1, Vertex vert2, Vertex vert3) = FaceHelper.GetFaceVertexes(polygon, face);
             
             // Line 1 -> 2
             DrawVertexLine(pixelBuffer, vert1, vert2, color, halfWidth, halfHeight, startPoint);

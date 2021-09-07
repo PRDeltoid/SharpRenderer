@@ -24,14 +24,14 @@ namespace SharpRendererLib
         /// <summary>
         /// Sets a pixel's color at a given coordinate
         /// Coordinates are zero-based
+        /// Will silently fail to print if the pixel is outside of the height/width of the pixel buffer
         /// </summary>
         /// <param name="x">A zero-based value for how far from the left-hand side of the pixel buffer we want to draw</param>
         /// <param name="y">A zero-based value for how far from the top-side of the pixel buffer we want to draw</param>
         /// <param name="color">The color we want to paint the pixel</param>
-        /// <exception cref="Exception">Exception thrown if <paramref name="x"/> or <paramref name="y"/> are out of the pixel buffers boundaries (Width-1 and Height-1 respectively)</exception>
         public void SetPixel(int x, int y, Color color)
         {
-            if (x >= Width || x < 0 || y >= Height || y < 0) throw OutOfBoundsSetException(x, y);
+            if (x >= Width || x < 0 || y >= Height || y < 0) return;
             Pixels[x,y] = color;
         }
 

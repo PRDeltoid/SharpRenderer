@@ -22,8 +22,8 @@ namespace SharpRendererConsole
             Polygon parsedFile = parser.ParseFile(path); 
             
             // Render the polygon as a wiremesh
-            WireMeshPolygonDrawer polygonDrawer = new WireMeshPolygonDrawer(new BresenhamLineDrawStrategy());
-            polygonDrawer.Draw(pixelBuff, parsedFile, 600, 600, new Point(200,200), Color.White);
+            PolygonDrawer drawer = new(new WireMeshFaceDrawStrategy(new BresenhamLineDrawStrategy(), Color.White));
+            drawer.Draw(pixelBuff, parsedFile, 600, 600, new Point(200,200));
 
             // Output to a bitmap
             Bitmap bitmap = Draw(pixelBuff);

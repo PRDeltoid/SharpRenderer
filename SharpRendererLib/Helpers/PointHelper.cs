@@ -41,5 +41,10 @@ namespace SharpRendererLib.Helpers
         {
             return point2.Y - point1.Y;
         }
+        
+        public static Point OffsetPoint(Point point, Point offset)
+        {
+            return new Point(point.X + offset.X, point.Y + offset.Y);
+        }
     }
 }

@@ -100,5 +100,20 @@ namespace SharpRendererLibTests
 
             Assert.AreEqual(expectedDistance, PointHelper.DistanceY(point1, point2));  
         }
+        
+        [Test]
+        [TestCase(1, 1, 10, 10, 11, 11)]
+        [TestCase(2, 2, 1, 1, 3, 3)]
+        [TestCase(5, 5, 10, 10, 15, 15)]
+        public void OffsetPoint_ReturnsCorrectValue(int x1, int y1, int offsetX, int offsetY, int expectedX, int expectedY)
+        {
+            Point point = new Point(x1, y1);
+            Point offset = new Point(offsetX, offsetY);
+
+            Point output = PointHelper.OffsetPoint(point, offset);
+            
+            Assert.AreEqual(expectedX, output.X);
+            Assert.AreEqual(expectedY, output.Y);
+        }
     }
 }

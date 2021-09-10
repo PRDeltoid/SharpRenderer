@@ -18,14 +18,13 @@ namespace SharpRendererLib
         {
             int halfWidth = width / 2;
             int halfHeight = height / 2;
-            (Vertex vert1, Vertex vert2, Vertex vert3) = FaceHelper.GetFaceVertexes(polygon, face);
             
             // Line 1 -> 2
-            DrawVertexLine(pixelBuffer, vert1, vert2, _meshColor, halfWidth, halfHeight, startPoint);
+            DrawVertexLine(pixelBuffer, face.Vertex1, face.Vertex2, _meshColor, halfWidth, halfHeight, startPoint);
             // Line 2 -> 3
-            DrawVertexLine(pixelBuffer,vert2, vert3, _meshColor, halfWidth, halfHeight, startPoint);
+            DrawVertexLine(pixelBuffer,face.Vertex2, face.Vertex3, _meshColor, halfWidth, halfHeight, startPoint);
             // Line 3 -> 1
-            DrawVertexLine(pixelBuffer,vert3, vert1, _meshColor, halfWidth, halfHeight, startPoint);
+            DrawVertexLine(pixelBuffer,face.Vertex3, face.Vertex1, _meshColor, halfWidth, halfHeight, startPoint);
         }
         
         private void DrawVertexLine(PixelBuffer pixelBuffer, Vertex vert1, Vertex vert2, Color color, int halfWidth, int halfHeight, Point startPoint)

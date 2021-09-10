@@ -30,20 +30,14 @@ namespace SharpRendererLib
         
         private void DrawVertexLine(PixelBuffer pixelBuffer, Vertex vert1, Vertex vert2, Color color, int halfWidth, int halfHeight, Point startPoint)
         {
-            (int x1, int y1) = VertexToPixel(vert1, halfWidth, halfHeight, startPoint);
-            (int x2, int y2) = VertexToPixel(vert2, halfWidth, halfHeight, startPoint);
-            Point vertPoint1 = new Point(x1, y1);
-            Point vertPoint2 = new Point(x2, y2);
-            Line line = new Line(vertPoint1, vertPoint2);
-                
+            Point p1 = VertexHelper.VertexToPoint(vert1, halfWidth, halfHeight);
+            Point p2 = VertexHelper.VertexToPoint(vert2, halfWidth, halfHeight);
+            
+            Point p1Adjusted = PointHelper.OffsetPoint(p1, startPoint);
+            Point p2Adjusted = PointHelper.OffsetPoint(p2, startPoint);
+            
+            Line line = new Line(p1Adjusted, p2Adjusted);
             _lineDrawer.DrawLine(pixelBuffer, line, color);  
-        }
-        
-        private (int, int) VertexToPixel(Vertex vert, int halfWidth, int halfHeight, Point startPoint)
-        {
-            int x = (int)((vert.X) * (halfWidth));
-            int y = (int)((vert.Y) * (halfHeight));
-            return (x + startPoint.X, y + startPoint.Y);
         }
     }
 }

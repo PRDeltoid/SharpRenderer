@@ -26,18 +26,6 @@ namespace SharpRendererLibTests
         [TestCase(11,-11)]
         [TestCase(-11,-11)]
         [TestCase(10,10)]
-        public void SetPixel_OutOfBounds_ShouldThrow(int x, int y)
-        {
-            PixelBuffer pixelBuffer = new(10,10);
-            Assert.Throws<Exception>(() => pixelBuffer.SetPixel(x, y, Color.Aqua));
-        }
-        
-        [Test]
-        [TestCase(11,11)]
-        [TestCase(-11,11)]
-        [TestCase(11,-11)]
-        [TestCase(-11,-11)]
-        [TestCase(10,10)]
         public void GetPixel_OutOfBounds_ShouldThrow(int x, int y)
         {
             PixelBuffer pixelBuffer = new(10,10);

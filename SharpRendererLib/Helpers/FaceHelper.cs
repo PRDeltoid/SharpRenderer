@@ -5,7 +5,7 @@ namespace SharpRendererLib.Helpers
     public static class FaceHelper
     {
 
-        public static (Vertex, Vertex, Vertex) GetFaceVertexes(Polygon polygon, Face face)
+        public static (Vertex, Vertex, Vertex) GetFaceVertexes(Polygon polygon, SharpGL.SceneGraph.Face face)
         {
             Vertex vert1 = polygon.Vertices[face.Indices[0].Vertex];
             Vertex vert2 = polygon.Vertices[face.Indices[1].Vertex];

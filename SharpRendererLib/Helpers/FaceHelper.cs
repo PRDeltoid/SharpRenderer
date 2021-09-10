@@ -1,6 +1,6 @@
 ﻿using SharpGL.SceneGraph;
 
-namespace SharpRendererLib
+namespace SharpRendererLib.Helpers
 {
     public static class FaceHelper
     {

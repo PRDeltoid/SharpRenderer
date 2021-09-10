@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using SharpGL.SceneGraph;
+using SharpRendererLib.Helpers;
 
 namespace SharpRendererLib
 {

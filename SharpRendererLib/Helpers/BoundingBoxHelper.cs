@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace SharpRendererLib
+namespace SharpRendererLib.Helpers
 {
     public static class BoundingBoxHelper
     {

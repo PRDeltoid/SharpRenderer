@@ -24,7 +24,7 @@ namespace SharpRendererConsole
             
             // Render the polygon as a wiremesh
             // PolygonDrawer drawer = new(new WireMeshFaceDrawStrategy(new BresenhamLineDrawStrategy(), new RandomColorDrawStrategy()));
-            PolygonDrawer drawer = new(new FlatFaceDrawStrategy(new RandomColorDrawStrategy()));
+            PolygonDrawer drawer = new(new FlatFaceDrawStrategy(new FlatColorDrawStrategy(Color.White)));
             drawer.Draw(pixelBuff, parsedFile, 600, 600, new Point(500,500));
 
             // Output to a bitmap

@@ -1,5 +1,4 @@
 ﻿using System.Numerics;
-using SharpGL.SceneGraph;
 
 namespace SharpRendererLib.Helpers
 {
@@ -14,7 +13,8 @@ namespace SharpRendererLib.Helpers
                 face.Vertex2.Z - face.Vertex1.Z);
             
             // The cross of these two vectors produces a normal vector from the two vectors (and therefor the face)
-            return Vector3.Cross(vec1, vec2);
+            Vector3 cross = Vector3.Cross(vec1, vec2);
+            return Vector3.Normalize(cross);
         }
     }
 }

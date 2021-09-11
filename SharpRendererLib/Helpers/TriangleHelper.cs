@@ -29,7 +29,7 @@ namespace SharpRendererLib.Helpers
             return true;
         }
 
-        private static Vector3 Barycentric(Triangle triangle, Point point)
+        public static Vector3 Barycentric(Triangle triangle, Point point)
         {
            Vector3 vec1 = new Vector3(triangle.Point3.X - triangle.Point1.X, triangle.Point2.X - triangle.Point1.X,
                triangle.Point1.X - point.X);

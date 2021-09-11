@@ -5,6 +5,6 @@ namespace SharpRendererLib
 {
     public interface IPolygonDrawer
     {
-        void Draw(PixelBuffer pixelBuffer, Polygon polygon, Light light, int width, int height, Point startPoint);
+        void Draw(PixelBuffer pixelBuffer, Polygon polygon, Light light, ZBuffer zBuffer, int width, int height, Point startPoint);
     }
 }

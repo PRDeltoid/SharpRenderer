@@ -15,7 +15,7 @@ namespace SharpRendererLib
             _colorDrawStrategy = colorDrawStrategy;
         }
         
-        public void DrawFace(PixelBuffer pixelBuffer, Polygon polygon, Face face, Light light, int width, int height, Point start)
+        public void DrawFace(PixelBuffer pixelBuffer, Polygon polygon, Face face, Light light, ZBuffer zBuffer, int width, int height, Point start)
         {
             // Get a vector that is normal (perpendicular) to the face
             Vector3 faceNormal = FaceHelper.GetFaceNormal(face);
@@ -37,7 +37,7 @@ namespace SharpRendererLib
             
             Triangle faceTriangle = TriangleHelper.TriangleFromFace(face, width, height);
             BoundingBox bb = BoundingBoxHelper.GetBoundingBox(faceTriangle.Points);
-
+            
             bb.PerformActionOverBoundingBox(((point) =>
             {
                 if (TriangleHelper.PointInTriangle(faceTriangle, point))

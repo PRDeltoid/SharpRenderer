@@ -19,11 +19,13 @@ namespace SharpRendererConsole
             // Load the polygon to render
             ObjFileParser parser = new();
             string path = Path.Combine("../../../res", "african_head.obj");
+            // string path = Path.Combine("../../../res", "teapot.obj");
             Polygon parsedFile = parser.ParseFile(path); 
             
             // Render the polygon as a wiremesh
-            PolygonDrawer drawer = new(new WireMeshFaceDrawStrategy(new BresenhamLineDrawStrategy(), Color.White));
-            drawer.Draw(pixelBuff, parsedFile, 600, 600, new Point(200,200));
+            // PolygonDrawer drawer = new(new WireMeshFaceDrawStrategy(new BresenhamLineDrawStrategy(), new RandomColorDrawStrategy()));
+            PolygonDrawer drawer = new(new FlatFaceDrawStrategy(new RandomColorDrawStrategy()));
+            drawer.Draw(pixelBuff, parsedFile, 600, 600, new Point(500,500));
 
             // Output to a bitmap
             Bitmap bitmap = Draw(pixelBuff);

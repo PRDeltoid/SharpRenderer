@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using SharpGL.SceneGraph;
 using SharpGL.Serialization.Wavefront;
+using SharpRendererLib.Models;
 
 namespace SharpRendererLib
 {

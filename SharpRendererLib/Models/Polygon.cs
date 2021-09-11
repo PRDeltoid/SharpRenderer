@@ -2,7 +2,7 @@
 using System.Linq;
 using SharpGL.SceneGraph;
 
-namespace SharpRendererLib
+namespace SharpRendererLib.Models
 {
     public class Polygon
     {

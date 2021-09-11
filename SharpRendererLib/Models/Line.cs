@@ -1,8 +1,7 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using SharpRendererLib.Helpers;
 
-namespace SharpRendererLib
+namespace SharpRendererLib.Models
 {
     public class Line
     {

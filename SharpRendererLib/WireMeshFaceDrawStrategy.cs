@@ -2,6 +2,7 @@
 using SharpGL.SceneGraph;
 using SharpRendererLib.Helpers;
 using SharpRendererLib.Models;
+using Face = SharpRendererLib.Models.Face;
 
 namespace SharpRendererLib
 {

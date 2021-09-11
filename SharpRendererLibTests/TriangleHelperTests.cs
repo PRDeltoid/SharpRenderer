@@ -3,7 +3,8 @@ using NUnit.Framework;
 using SharpGL.SceneGraph;
 using SharpRendererLib;
 using SharpRendererLib.Helpers;
-using Face = SharpRendererLib.Face;
+using SharpRendererLib.Models;
+using Face = SharpRendererLib.Models.Face;
 
 namespace SharpRendererLibTests
 {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using SharpRendererLib.Helpers;
+using SharpRendererLib.Models;
 
 namespace SharpRendererLib
 {

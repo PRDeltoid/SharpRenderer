@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using SharpRendererLib;
 using SharpRendererLib.Helpers;
+using SharpRendererLib.Models;
 
 namespace SharpRendererLibTests
 {

@@ -1,16 +1,20 @@
-﻿using SharpGL.SceneGraph;
+﻿using System.Numerics;
+using SharpGL.SceneGraph;
 
 namespace SharpRendererLib.Helpers
 {
     public static class FaceHelper
     {
-
-        public static (Vertex, Vertex, Vertex) GetFaceVertexes(Polygon polygon, SharpGL.SceneGraph.Face face)
+        public static Vector3 GetFaceNormal(Face face)
         {
-            Vertex vert1 = polygon.Vertices[face.Indices[0].Vertex];
-            Vertex vert2 = polygon.Vertices[face.Indices[1].Vertex];
-            Vertex vert3 = polygon.Vertices[face.Indices[2].Vertex];
-            return (vert1, vert2, vert3);
+            // Create vectors that lie along two edges of the face
+            Vector3 vec1 = new Vector3(face.Vertex3.X - face.Vertex1.X, face.Vertex3.Y - face.Vertex1.Y,
+                face.Vertex3.Z - face.Vertex1.Z);
+            Vector3 vec2 = new Vector3(face.Vertex2.X - face.Vertex1.X, face.Vertex2.Y - face.Vertex1.Y,
+                face.Vertex2.Z - face.Vertex1.Z);
+            
+            // The cross of these two vectors produces a normal vector from the two vectors (and therefor the face)
+            return Vector3.Cross(vec1, vec2);
         }
     }
 }

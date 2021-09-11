@@ -1,11 +1,11 @@
 ﻿using System.Drawing;
-using SharpGL.SceneGraph;
+using SharpRendererLib.Models;
 
 namespace SharpRendererLib
 {
     public interface IFaceDrawStrategy
     {
-        public void DrawFace(PixelBuffer pixelBuffer, Polygon polygon, Face face, int width, int height,
+        public void DrawFace(PixelBuffer pixelBuffer, Polygon polygon, Face face, Light light, int width, int height,
             Point start);
     }
 }

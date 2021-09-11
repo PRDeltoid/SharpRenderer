@@ -4,7 +4,7 @@ namespace SharpRendererLib.Models
 {
     public class Light
     {
-        private Vector3 _value;
+        private readonly Vector3 _value;
 
         private Light(Vector3 value)
         {

@@ -15,14 +15,13 @@ namespace SharpRendererLib
             _colorDrawStrategy = colorDrawStrategy;
         }
         
-        public void DrawFace(PixelBuffer pixelBuffer, Polygon polygon, Face face, int width, int height, Point start)
+        public void DrawFace(PixelBuffer pixelBuffer, Polygon polygon, Face face, Light light, int width, int height, Point start)
         {
             // Get a vector that is normal (perpendicular) to the face
             Vector3 faceNormal = FaceHelper.GetFaceNormal(face);
-            Light lightVec = new Vector3(0, 0, -1);
             
             // Determine the intensity of light hitting the face
-            float intensity = Vector3.Dot(faceNormal, lightVec); 
+            float intensity = Vector3.Dot(faceNormal, light); 
             // If the intensity is negative, the light is coming from behind the face
             // We do not render the face if this is the case. This is called "Backface Culling"
             if (intensity < 0)

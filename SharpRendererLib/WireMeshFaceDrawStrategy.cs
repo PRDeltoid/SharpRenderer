@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using SharpGL.SceneGraph;
 using SharpRendererLib.Helpers;
+using SharpRendererLib.Models;
 
 namespace SharpRendererLib
 {
@@ -15,7 +16,7 @@ namespace SharpRendererLib
             _lineDrawer = new LineDrawer(lineDrawStrategy);
             _colorDrawStrategy = colorDrawStrategy;
         }
-        public void DrawFace(PixelBuffer pixelBuffer, Polygon polygon, Face face, int width, int height, Point startPoint)
+        public void DrawFace(PixelBuffer pixelBuffer, Polygon polygon, Face face, Light light, int width, int height, Point startPoint)
         {
             int halfWidth = width / 2;
             int halfHeight = height / 2;

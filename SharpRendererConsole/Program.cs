@@ -1,7 +1,9 @@
 ﻿using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Numerics;
 using SharpRendererLib;
+using SharpRendererLib.Models;
 
 namespace SharpRendererConsole
 {
@@ -22,10 +24,12 @@ namespace SharpRendererConsole
             // string path = Path.Combine("../../../res", "teapot.obj");
             Polygon parsedFile = parser.ParseFile(path); 
             
+            Light lightVec = new Vector3(0, 0, -1);
+            
             // Render the polygon as a wiremesh
             // PolygonDrawer drawer = new(new WireMeshFaceDrawStrategy(new BresenhamLineDrawStrategy(), new RandomColorDrawStrategy()));
             PolygonDrawer drawer = new(new FlatFaceDrawStrategy(new FlatColorDrawStrategy(Color.White)));
-            drawer.Draw(pixelBuff, parsedFile, 600, 600, new Point(500,500));
+            drawer.Draw(pixelBuff, parsedFile, lightVec, 600, 600, new Point(500,500));
 
             // Output to a bitmap
             Bitmap bitmap = Draw(pixelBuff);

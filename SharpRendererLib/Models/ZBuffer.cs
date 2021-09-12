@@ -24,7 +24,9 @@ namespace SharpRendererLib.Models
 
         public float GetZ(int x, int y)
         {
-            if (x < 0 || y < 0 || x >= _width || y >= _height) throw new IndexOutOfRangeException($"({x},{y}) is out of range 0->{_width-1}W, 0->{_height-1}H");
+            // Attempt to get a Z value out-of-bounds should just be met with an value that any point would be in front
+            // of (ie. it does not effect the z buffer at all)
+            if (x < 0 || y < 0 || x >= _width || y >= _height) return float.NegativeInfinity;
             
             return _zBuffer[x, y];
         }
@@ -39,7 +41,7 @@ namespace SharpRendererLib.Models
         public bool TrySetZ(int x, int y, float z)
         {
             // If we've already drawn something with a higher Z value, skip updating this point's Z value and return false
-            if (GetZ(x, y) > z) return false; 
+            if (GetZ(x, y) > z) return false;
                     
             // Otherwise, update zbuffer and return true to indicate success in setting Z value of buffer
             SetZ(x, y, z);

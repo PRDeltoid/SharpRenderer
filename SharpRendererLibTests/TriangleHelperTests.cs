@@ -1,7 +1,6 @@
 ﻿using System.Drawing;
 using NUnit.Framework;
 using SharpGL.SceneGraph;
-using SharpRendererLib;
 using SharpRendererLib.Helpers;
 using SharpRendererLib.Models;
 using Face = SharpRendererLib.Models.Face;

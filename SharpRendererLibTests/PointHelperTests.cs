@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using NUnit.Framework;
-using SharpRendererLib;
 using SharpRendererLib.Helpers;
 
 namespace SharpRendererLibTests

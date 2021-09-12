@@ -19,7 +19,6 @@ namespace SharpRendererLib
         public void DrawFace(PixelBuffer pixelBuffer, Polygon polygon, Face face, Light light, ZBuffer zBuffer, int width, int height,
             Point start)
         {
-            Texture texture = polygon.Texture;
             // Get a vector that is normal (orthagonal) to the face
             Vector3 faceNormal = FaceHelper.GetFaceNormal(face);
             

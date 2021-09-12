@@ -14,14 +14,23 @@ namespace SharpRendererLib.Models
             Faces = polygon.Faces.Select(face =>
             {
                 (Vertex vert1, Vertex vert2, Vertex vert3) = GetFaceVertexes(this, face);
-                return new Face(vert1, vert2, vert3);
+                (UV texVert1, UV texVert2, UV texVert3) = GetFaceTextureUVs(this, face);
+                return new Face(vert1, vert2, vert3, texVert1, texVert2, texVert3);
             }).ToList();
         }
 
-        public List<Vertex> Vertices => _polygon.Vertices;
         public List<Face> Faces { get; }
+        public List<Vertex> Vertices => _polygon.Vertices;
+        public List<UV> UVs => _polygon.UVs;
         public List<Vertex> VertexNormals => _polygon.Normals;
         
+        private static (UV, UV, UV) GetFaceTextureUVs(Polygon polygon, SharpGL.SceneGraph.Face face)
+        {
+            UV vert1 = polygon.UVs[face.Indices[0].UV];
+            UV vert2 = polygon.UVs[face.Indices[1].UV];
+            UV vert3 = polygon.UVs[face.Indices[2].UV];
+            return (vert1, vert2, vert3);
+        }
         
         private static (Vertex, Vertex, Vertex) GetFaceVertexes(Polygon polygon, SharpGL.SceneGraph.Face face)
         {

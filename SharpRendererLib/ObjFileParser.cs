@@ -5,11 +5,11 @@ using SharpRendererLib.Models;
 
 namespace SharpRendererLib
 {
-    public class ObjFileParser
+    public static class ObjFileParser
     {
         private static readonly ObjFileFormat _objFileLoader = new ObjFileFormat();
         
-        public Polygon ParseFile(string path)
+        public static Polygon ParseFile(string path)
         {
             Scene scene = _objFileLoader.LoadData(path);
             // an Obj file only contains one model, and ObjFileFormat makes it the first child of the SceneContainer

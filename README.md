@@ -7,3 +7,4 @@ This project was created to help learn TDD and how model rendering works. It is 
 ![best2](https://raw.githubusercontent.com/PRDeltoid/SharpRenderer/master/SharpRendererConsole/out/best2.bmp)
 ![best3](https://raw.githubusercontent.com/PRDeltoid/SharpRenderer/master/SharpRendererConsole/out/best3.bmp)
 ![best4](https://raw.githubusercontent.com/PRDeltoid/SharpRenderer/master/SharpRendererConsole/out/best4.bmp)
+![best5](https://raw.githubusercontent.com/PRDeltoid/SharpRenderer/master/SharpRendererConsole/out/best5.bmp)

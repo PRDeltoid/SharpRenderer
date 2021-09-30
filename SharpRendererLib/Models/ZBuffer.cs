@@ -33,7 +33,7 @@ namespace SharpRendererLib.Models
 
         public void SetZ(int x, int y, float z)
         {
-            if (x < 0 || y < 0 || x >= _width || y >= _height) throw new IndexOutOfRangeException($"({x},{y}) is out of range 0->{_width-1}W, 0->{_height-1}H");
+            if (x < 0 || y < 0 || x >= _width || y >= _height) return;
             
             _zBuffer[x, y] = z; 
         }

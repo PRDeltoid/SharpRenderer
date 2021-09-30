@@ -11,7 +11,7 @@
         {
             Width = width;
             Height = height;
-            _matrix = ConstructViewport(x, y, width / 8, height / 8, depth);
+            _matrix = ConstructViewport(x, y, width, height, depth);
         }
 
         private static Matrix ConstructViewport(int x, int y, int width, int height, int depth)

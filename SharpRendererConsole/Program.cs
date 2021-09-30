@@ -24,15 +24,16 @@ namespace SharpRendererConsole
             
             Polygon polygon = ObjFileParser.ParseFile(path);
             Texture texture = new Texture(TgaFileParser.ParseFile(texturePath));
-            
+            ViewPort viewPort = new ViewPort((int)(width * 0.75f), (int)(height * 0.75f), 255, width / 8, height / 8);
+            Camera camera = new Camera(0, 0, 4); 
             Light lightVec = new Vector3(0, 0, -1);
             
             // Render the polygon
             // PolygonDrawer drawer = new(new WireMeshFaceDrawStrategy(new BresenhamLineDrawStrategy(), new RandomColorDrawStrategy()));
-            // PolygonDrawer drawer = new(new FaceDrawStrategy(new FlatColorDrawStrategy(Color.White)));
-            PolygonDrawer drawer = new(new FaceDrawStrategy(new TextureColorDrawStrategy(texture)));
+            // PolygonDrawer drawer = new(new FaceDrawStrategy(new FlatColorDrawStrategy(Color.White), camera, viewPort));
+            PolygonDrawer drawer = new(new FaceDrawStrategy(new TextureColorDrawStrategy(texture), camera, viewPort));
             
-            drawer.Draw(pixelBuff, polygon, lightVec, zBuffer, 600, 600, new Point(100,100));
+            drawer.Draw(pixelBuff, polygon, lightVec, zBuffer, 600, 600, new Point(0,0));
 
             // Output to a bitmap
             Bitmap bitmap = Draw(pixelBuff);

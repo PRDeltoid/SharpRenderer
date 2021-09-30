@@ -9,10 +9,15 @@ namespace SharpRendererLib
     public class FaceDrawStrategy : IFaceDrawStrategy
     {
         private readonly IColorDrawStrategy _colorDrawStrategy;
+        private readonly ViewPort _viewPort;
+        private readonly Matrix _projection;
 
-        public FaceDrawStrategy(IColorDrawStrategy colorDrawStrategy)
+        public FaceDrawStrategy(IColorDrawStrategy colorDrawStrategy, Camera camera, ViewPort viewPort)
         {
             _colorDrawStrategy = colorDrawStrategy;
+            _projection = Matrix.Identity(4);
+            _projection[3, 2] = -1f / camera.Z;
+            _viewPort = viewPort;
         }
        
         public void DrawFace(PixelBuffer pixelBuffer, Face face, Light light, ZBuffer zBuffer, int width, int height,
@@ -30,7 +35,7 @@ namespace SharpRendererLib
                 return;
             } 
             
-            Triangle faceTriangle = TriangleHelper.TriangleFromFace(face, width, height);
+            Triangle faceTriangle = TriangleHelper.TriangleFromFace(face, _viewPort, _projection);
             BoundingBox bb = BoundingBoxHelper.GetBoundingBox(faceTriangle.Points);
 
             Color faceColor = Color.Aqua;
@@ -42,10 +47,6 @@ namespace SharpRendererLib
 
             bb.PerformActionOverBoundingBox(((point) =>
             {
-                // If where we're drawing is negative, skip it as it is outside the screen
-                Point drawPoint = PointHelper.OffsetPoint(point, start);
-                if(drawPoint.X < 0 || drawPoint.Y < 0 || drawPoint.X >= width+start.X || drawPoint.Y >= height+start.Y) return;
-
                 // Check if our barycentric coordinate indicates that the point is within the bounds of faceTriangle
                 // If it is out of bounds, skip drawing it.
                 Vector3 bc = TriangleHelper.Barycentric(faceTriangle, point);
@@ -53,7 +54,7 @@ namespace SharpRendererLib
                 
                 // If we've already drawn something closer to the camera already, skip drawing this point
                 float z = CalculatePointZ(face, bc);
-                if (zBuffer.TrySetZ(drawPoint.X, drawPoint.Y, z) == false) return;
+                if (zBuffer.TrySetZ(point.X, point.Y, z) == false) return;
 
                 Color pointColor;
                 if (_colorDrawStrategy.ColorPerFace)
@@ -69,7 +70,7 @@ namespace SharpRendererLib
                 } 
 
                 // If we get here, we've passed all of our tests and should draw the point
-                pixelBuffer.SetPixel(drawPoint.X, drawPoint.Y, pointColor);
+                pixelBuffer.SetPixel(point.X, point.Y, pointColor);
             }));
         }
 

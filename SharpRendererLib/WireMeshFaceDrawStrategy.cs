@@ -18,7 +18,7 @@ namespace SharpRendererLib
             _colorDrawStrategy = colorDrawStrategy;
         }
         
-        public void DrawFace(PixelBuffer pixelBuffer, Polygon polygon, Face face, Light light, ZBuffer zBuffer, int width, int height, Point startPoint)
+        public void DrawFace(PixelBuffer pixelBuffer, Face face, Light light, ZBuffer zBuffer, int width, int height, Point startPoint)
         {
             int halfWidth = width / 2;
             int halfHeight = height / 2;

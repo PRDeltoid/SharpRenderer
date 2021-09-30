@@ -14,8 +14,8 @@ namespace SharpRendererLib
         {
             _colorDrawStrategy = colorDrawStrategy;
         }
-        
-        public void DrawFace(PixelBuffer pixelBuffer, Polygon polygon, Face face, Light light, ZBuffer zBuffer, int width, int height,
+       
+        public void DrawFace(PixelBuffer pixelBuffer, Face face, Light light, ZBuffer zBuffer, int width, int height,
             Point start)
         {
             // Get a vector that is normal (orthagonal) to the face

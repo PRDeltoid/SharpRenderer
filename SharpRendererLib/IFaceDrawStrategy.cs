@@ -5,7 +5,7 @@ namespace SharpRendererLib
 {
     public interface IFaceDrawStrategy
     {
-        public void DrawFace(PixelBuffer pixelBuffer, Polygon polygon, Face face, Light light, ZBuffer zbuffer, int width, int height,
-            Point start);
+        void DrawFace(PixelBuffer pixelBuffer, Face face, Light light, ZBuffer zBuffer, int width, int height,
+            Point startPoint);
     }
 }

@@ -16,7 +16,7 @@ namespace SharpRendererLib
         {
             foreach (Face face in polygon.Faces)
             {
-                _faceDrawStrategy.DrawFace(pixelBuffer, polygon, face, light, zBuffer, width, height, startPoint);
+                _faceDrawStrategy.DrawFace(pixelBuffer, face, light, zBuffer, width, height, startPoint);
             }
         }
     }

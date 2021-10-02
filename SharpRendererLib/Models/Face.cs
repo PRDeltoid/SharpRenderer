@@ -4,15 +4,15 @@ namespace SharpRendererLib.Models
 {
     public class Face
     {
-        public UV TextureVertex1 { get; }
-        public UV TextureVertex2 { get; }
-        public UV TextureVertex3 { get; }
-        public Vertex Vertex3 { get; }
-        public Vertex Vertex2 { get; }
-        public Vertex Vertex1 { get; }
-        public Vertex Vertex1Norm { get; }
-        public Vertex Vertex2Norm { get; }
-        public Vertex Vertex3Norm { get; }
+        public UV TextureVertex1 { get; set; }
+        public UV TextureVertex2 { get; set; }
+        public UV TextureVertex3 { get; set; }
+        public Vertex Vertex3 { get; set; }
+        public Vertex Vertex2 { get; set; }
+        public Vertex Vertex1 { get; set; }
+        public Vertex Vertex1Norm { get; set; }
+        public Vertex Vertex2Norm { get; set; }
+        public Vertex Vertex3Norm { get; set; }
         public Vertex[] Vertexes { get; }
         public UV[] TextureVertexes { get; }
         public Vertex[] Normals { get; }

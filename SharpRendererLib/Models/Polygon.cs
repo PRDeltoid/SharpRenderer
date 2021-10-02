@@ -13,10 +13,23 @@ namespace SharpRendererLib.Models
             _polygon = polygon;
             Faces = polygon.Faces.Select(face =>
             {
+                // Always parse vertexes, as without them, no polygon would exist
                 (Vertex vert1, Vertex vert2, Vertex vert3) = GetFaceVertexes(this, face);
-                (UV texVert1, UV texVert2, UV texVert3) = GetFaceTextureUVs(this, face);
-                (Vertex vert1Norm, Vertex vert2Norm, Vertex vert3Norm) = GetVertexNormals(this, face);
-                return new Face(vert1, vert2, vert3, texVert1, texVert2, texVert3, vert1Norm, vert2Norm, vert3Norm);
+                Face returnFace = new Face(vert1, vert2, vert3);
+
+                // Only parse texture coordinates if they exist
+                if (polygon.UVs.Count > 0)
+                {
+                    (returnFace.TextureVertex1, returnFace.TextureVertex2, returnFace.TextureVertex3) = GetFaceTextureUVs(this, face);
+                }
+
+                // Only parse normal vertexes if they exist
+                if (polygon.Normals.Count > 0)
+                {
+                    (returnFace.Vertex1Norm, returnFace.Vertex2Norm, returnFace.Vertex3Norm) = GetVertexNormals(this, face);
+                }
+
+                return returnFace;
             }).ToList();
         }
 

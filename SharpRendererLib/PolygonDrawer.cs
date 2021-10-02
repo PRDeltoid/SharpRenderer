@@ -12,11 +12,11 @@ namespace SharpRendererLib
             _faceDrawStrategy = faceDrawStrategy;
         }
         
-        public void Draw(PixelBuffer pixelBuffer, Polygon polygon, Light light, ZBuffer zBuffer, int width, int height, Point startPoint)
+        public void Draw(PixelBuffer pixelBuffer, Polygon polygon, Light light, ZBuffer zBuffer)
         {
             foreach (Face face in polygon.Faces)
             {
-                _faceDrawStrategy.DrawFace(pixelBuffer, face, light, zBuffer, width, height, startPoint);
+                _faceDrawStrategy.DrawFace(pixelBuffer, face, light, zBuffer);
             }
         }
     }

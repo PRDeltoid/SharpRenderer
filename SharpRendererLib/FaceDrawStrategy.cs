@@ -23,9 +23,8 @@ namespace SharpRendererLib
             _viewPort = viewPort;
             _modelView = modelView;
         }
-       
-        public void DrawFace(PixelBuffer pixelBuffer, Face face, Light light, ZBuffer zBuffer, int width, int height,
-            Point start)
+
+        public void DrawFace(PixelBuffer pixelBuffer, Face face, Light light, ZBuffer zBuffer)
         {
             // Project the face onto our viewport
             Triangle faceTriangle = TriangleHelper.TriangleFromFace(face, _viewPort, _projection, _modelView);

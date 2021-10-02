@@ -7,16 +7,6 @@ namespace SharpRendererLib.Helpers
 {
     public static class TriangleHelper
     {
-        public static Triangle TriangleFromFace(Face face, int width, int height)
-        {
-            int halfWidth = width / 2;
-            int halfHeight = height / 2;
-            Point p1 = VertexHelper.VertexToPoint(face.Vertex1, halfWidth, halfHeight);
-            Point p2 = VertexHelper.VertexToPoint(face.Vertex2, halfWidth, halfHeight);
-            Point p3 = VertexHelper.VertexToPoint(face.Vertex3, halfWidth, halfHeight);
-            return new Triangle(p1, p2, p3);
-        }
-        
         public static Triangle TriangleFromFace(Face face, ViewPort viewPort, Matrix projection, Matrix modelView)
         {
             Point p1 = VertexHelper.VertexToPoint(viewPort,  projection, modelView, face.Vertex1);

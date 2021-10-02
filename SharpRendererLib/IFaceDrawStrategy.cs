@@ -1,11 +1,9 @@
-﻿using System.Drawing;
-using SharpRendererLib.Models;
+﻿using SharpRendererLib.Models;
 
 namespace SharpRendererLib
 {
     public interface IFaceDrawStrategy
     {
-        void DrawFace(PixelBuffer pixelBuffer, Face face, Light light, ZBuffer zBuffer, int width, int height,
-            Point startPoint);
+        void DrawFace(PixelBuffer pixelBuffer, Face face, Light light, ZBuffer zBuffer);
     }
 }

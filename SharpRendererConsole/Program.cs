@@ -34,7 +34,8 @@ namespace SharpRendererConsole
             // Render the polygon
             // PolygonDrawer drawer = new(new WireMeshFaceDrawStrategy(new BresenhamLineDrawStrategy(), new RandomColorDrawStrategy()));
             // PolygonDrawer drawer = new(new FaceDrawStrategy(new FlatColorDrawStrategy(Color.White), camera, viewPort));
-            PolygonDrawer drawer = new(new FaceDrawStrategy(new TextureColorDrawStrategy(texture), new FlatShadingStrategy(), camera, viewPort, modelView));
+            // PolygonDrawer drawer = new(new FaceDrawStrategy(new TextureColorDrawStrategy(texture), new FlatShadingStrategy(), camera, viewPort, modelView));
+            PolygonDrawer drawer = new(new FaceDrawStrategy(new TextureColorDrawStrategy(texture), new GouraudShading(), camera, viewPort, modelView));
             
             drawer.Draw(pixelBuff, polygon, lightVec, zBuffer, 600, 600, new Point(0,0));
 
@@ -72,22 +73,6 @@ namespace SharpRendererConsole
             Tr[2, 3] = -center.Z;
 
             return Minv * Tr;
-            //Vec3f eye(1,1,3);
-            // Vec3f center(0,0,0);`
-            // void lookat(Vec3f eye, Vec3f center, Vec3f up) {
-            //     Vec3f z = (eye-center).normalize();
-            //     Vec3f x = cross(up,z).normalize();
-            //     Vec3f y = cross(z,x).normalize();
-            //     Matrix Minv = Matrix::identity();
-            //     Matrix Tr   = Matrix::identity();
-            //     for (int i=0; i<3; i++) {
-            //         Minv[0][i] = x[i];
-            //         Minv[1][i] = y[i];
-            //         Minv[2][i] = z[i];
-            //         Tr[i][3] = -center[i];
-            //     }
-            //     ModelView = Minv*Tr;
-            // }
         }
 
         private static void OpenImage(string imagePath)

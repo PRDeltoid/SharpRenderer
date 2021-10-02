@@ -15,7 +15,8 @@ namespace SharpRendererLib.Models
             {
                 (Vertex vert1, Vertex vert2, Vertex vert3) = GetFaceVertexes(this, face);
                 (UV texVert1, UV texVert2, UV texVert3) = GetFaceTextureUVs(this, face);
-                return new Face(vert1, vert2, vert3, texVert1, texVert2, texVert3);
+                (Vertex vert1Norm, Vertex vert2Norm, Vertex vert3Norm) = GetVertexNormals(this, face);
+                return new Face(vert1, vert2, vert3, texVert1, texVert2, texVert3, vert1Norm, vert2Norm, vert3Norm);
             }).ToList();
         }
 
@@ -37,6 +38,14 @@ namespace SharpRendererLib.Models
             Vertex vert1 = polygon.Vertices[face.Indices[0].Vertex];
             Vertex vert2 = polygon.Vertices[face.Indices[1].Vertex];
             Vertex vert3 = polygon.Vertices[face.Indices[2].Vertex];
+            return (vert1, vert2, vert3);
+        }
+        
+        private static (Vertex, Vertex, Vertex) GetVertexNormals(Polygon polygon, SharpGL.SceneGraph.Face face)
+        {
+            Vertex vert1 = polygon.Vertices[face.Indices[0].Normal];
+            Vertex vert2 = polygon.Vertices[face.Indices[1].Normal];
+            Vertex vert3 = polygon.Vertices[face.Indices[2].Normal];
             return (vert1, vert2, vert3);
         }
     }

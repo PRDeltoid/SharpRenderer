@@ -31,7 +31,7 @@ namespace SharpRendererConsole
             // Render the polygon
             // PolygonDrawer drawer = new(new WireMeshFaceDrawStrategy(new BresenhamLineDrawStrategy(), new RandomColorDrawStrategy()));
             // PolygonDrawer drawer = new(new FaceDrawStrategy(new FlatColorDrawStrategy(Color.White), camera, viewPort));
-            PolygonDrawer drawer = new(new FaceDrawStrategy(new TextureColorDrawStrategy(texture), camera, viewPort));
+            PolygonDrawer drawer = new(new FaceDrawStrategy(new TextureColorDrawStrategy(texture), new FlatShadingStrategy(), camera, viewPort));
             
             drawer.Draw(pixelBuff, polygon, lightVec, zBuffer, 600, 600, new Point(0,0));
 

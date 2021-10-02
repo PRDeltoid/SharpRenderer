@@ -46,8 +46,6 @@ namespace SharpRendererConsole
             OpenImage(outPath);
         }
 
-
-
         private static void OpenImage(string imagePath)
         {
             ProcessStartInfo openImageProc = new(imagePath) { UseShellExecute = true };

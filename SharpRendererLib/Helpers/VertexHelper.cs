@@ -31,10 +31,10 @@ namespace SharpRendererLib.Helpers
             return new Point(x, y);
         }
         
-        public static Point VertexToPoint(ViewPort viewPort, Matrix projection, Vertex vertex)
+        public static Point VertexToPoint(ViewPort viewPort, Matrix projection, Matrix modelView, Vertex vertex)
         {
             Matrix matrixVert = VertexToMatrix(vertex);
-            Vertex screenVertex = MatrixHelper.MatrixToVertex(viewPort * projection * matrixVert);
+            Vertex screenVertex = MatrixHelper.MatrixToVertex(viewPort * projection * modelView * matrixVert);
             int x = (int)screenVertex.X;
             int y = (int)screenVertex.Y;
             return new Point(x, y);

@@ -12,6 +12,7 @@ namespace SharpRendererLib
         private readonly ViewPort _viewPort;
         private readonly Matrix _projection;
         private readonly IShadingStrategy _shadingStrategy;
+        private readonly Matrix _modelView;
 
         public FaceDrawStrategy(IColorDrawStrategy colorDrawStrategy, IShadingStrategy shadingStrategy, Camera camera, ViewPort viewPort, Matrix modelView)
         {
@@ -20,14 +21,14 @@ namespace SharpRendererLib
             _projection = Matrix.Identity(4);
             _projection[3, 2] = -1f / camera.Z;
             _viewPort = viewPort;
-            ModelView = modelView;
+            _modelView = modelView;
         }
        
         public void DrawFace(PixelBuffer pixelBuffer, Face face, Light light, ZBuffer zBuffer, int width, int height,
             Point start)
         {
             // Project the face onto our viewport
-            Triangle faceTriangle = TriangleHelper.TriangleFromFace(face, _viewPort, _projection, ModelView);
+            Triangle faceTriangle = TriangleHelper.TriangleFromFace(face, _viewPort, _projection, _modelView);
             // Find the face's screen triangle's bounding box on the screen
             BoundingBox bb = BoundingBoxHelper.GetBoundingBox(faceTriangle.Points);
 

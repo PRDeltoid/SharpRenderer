@@ -6,28 +6,22 @@ using SharpRendererLib.Models;
 
 namespace SharpRendererLib
 {
-    public class FaceDrawStrategy : IFaceDrawStrategy
+    public class FaceDrawStrategy : FaceDrawStrategyBase, IFaceDrawStrategy
     {
         private readonly IColorDrawStrategy _colorDrawStrategy;
-        private readonly ViewPort _viewPort;
-        private readonly Matrix _projection;
         private readonly IShadingStrategy _shadingStrategy;
-        private readonly Matrix _modelView;
 
-        public FaceDrawStrategy(IColorDrawStrategy colorDrawStrategy, IShadingStrategy shadingStrategy, Camera camera, ViewPort viewPort, Matrix modelView)
+        public FaceDrawStrategy(IColorDrawStrategy colorDrawStrategy, IShadingStrategy shadingStrategy, Camera camera, ViewPort viewPort, ModelView modelView)
+            : base(camera, viewPort, modelView)
         {
             _colorDrawStrategy = colorDrawStrategy;
             _shadingStrategy = shadingStrategy;
-            _projection = Matrix.Identity(4);
-            _projection[3, 2] = -1f / camera.Z;
-            _viewPort = viewPort;
-            _modelView = modelView;
         }
 
         public void DrawFace(PixelBuffer pixelBuffer, Face face, Light light, ZBuffer zBuffer)
         {
             // Project the face onto our viewport
-            Triangle faceTriangle = TriangleHelper.TriangleFromFace(face, _viewPort, _projection, _modelView);
+            Triangle faceTriangle = TriangleHelper.TriangleFromFace(face, TransformationMatrix);
             // Find the face's screen triangle's bounding box on the screen
             BoundingBox bb = BoundingBoxHelper.GetBoundingBox(faceTriangle.Points);
 
@@ -62,7 +56,6 @@ namespace SharpRendererLib
             if (faceIntensity < 0)
             {
                 return;
-                
             }
 
             bb.PerformActionOverBoundingBox(((point) =>

@@ -27,17 +27,16 @@ namespace SharpRendererConsole
             ViewPort viewPort = new ViewPort((int)(width * 0.75f), (int)(height * 0.75f), 255, width / 8, height / 8);
             Camera camera = new Camera(1, 1, 3);
             Vector3 center = new Vector3(0, 0, 0);
+            ModelView modelView = new ModelView(camera, center);
             Light lightVec = new Vector3(0, 0, 1);
 
-            Matrix modelView = GetModelView(camera, center);
-            
             // Render the polygon
-            PolygonDrawer drawer = new(new WireMeshFaceDrawStrategy(new BresenhamLineDrawStrategy(), new RandomColorDrawStrategy(), camera, viewPort, modelView));
-            // PolygonDrawer drawer = new(new FaceDrawStrategy(new FlatColorDrawStrategy(Color.White), camera, viewPort));
+            // PolygonDrawer drawer = new(new WireMeshFaceDrawStrategy(new BresenhamLineDrawStrategy(), new RandomColorDrawStrategy(), camera, viewPort, modelView));
+            // PolygonDrawer drawer = new(new FaceDrawStrategy(new FlatColorDrawStrategy(Color.White), new GouraudShading(), camera, viewPort, modelView));
             // PolygonDrawer drawer = new(new FaceDrawStrategy(new TextureColorDrawStrategy(texture), new FlatShadingStrategy(), camera, viewPort, modelView));
-            // PolygonDrawer drawer = new(new FaceDrawStrategy(new TextureColorDrawStrategy(texture), new GouraudShading(), camera, viewPort, modelView));
+            PolygonDrawer drawer = new(new FaceDrawStrategy(new TextureColorDrawStrategy(texture), new GouraudShading(), camera, viewPort, modelView));
             
-            drawer.Draw(pixelBuff, polygon, lightVec, zBuffer, 600, 600, new Point(0,0));
+            drawer.Draw(pixelBuff, polygon, lightVec, zBuffer);
 
             // Output to a bitmap
             Bitmap bitmap = Draw(pixelBuff);
@@ -47,33 +46,7 @@ namespace SharpRendererConsole
             OpenImage(outPath);
         }
 
-        private static Matrix GetModelView(Camera camera, Vector3 center)
-        {
-            Vector3 up = new Vector3(0, 1, 0);
-            Vector3 z = Vector3.Normalize(camera - center);
-            Vector3 x = Vector3.Normalize(Vector3.Cross(up, z));
-            Vector3 y = Vector3.Normalize(Vector3.Cross(z, x));
-            
-            Matrix Minv = Matrix.Identity(4);
-            Matrix Tr = Matrix.Identity(4);
-            Minv[0, 0] = x.X;
-            Minv[0, 1] = x.Y;
-            Minv[0, 2] = x.Z;
-            
-            Minv[1, 0] = y.X;
-            Minv[1, 1] = y.Y;
-            Minv[1, 2] = y.Z;
-            
-            Minv[2, 0] = z.X;
-            Minv[2, 1] = z.Y;
-            Minv[2, 2] = z.Z;
-            
-            Tr[0, 3] = -center.X;
-            Tr[1, 3] = -center.Y;
-            Tr[2, 3] = -center.Z;
 
-            return Minv * Tr;
-        }
 
         private static void OpenImage(string imagePath)
         {

@@ -7,11 +7,11 @@ namespace SharpRendererLib.Helpers
 {
     public static class TriangleHelper
     {
-        public static Triangle TriangleFromFace(Face face, ViewPort viewPort, Matrix projection, Matrix modelView)
+        public static Triangle TriangleFromFace(Face face, Matrix transformationMatrix)
         {
-            Point p1 = VertexHelper.VertexToPoint(viewPort,  projection, modelView, face.Vertex1);
-            Point p2 = VertexHelper.VertexToPoint(viewPort, projection, modelView, face.Vertex2);
-            Point p3 = VertexHelper.VertexToPoint(viewPort, projection, modelView, face.Vertex3);
+            Point p1 = VertexHelper.VertexToPoint(face.Vertex1, transformationMatrix);
+            Point p2 = VertexHelper.VertexToPoint(face.Vertex2, transformationMatrix);
+            Point p3 = VertexHelper.VertexToPoint(face.Vertex3, transformationMatrix);
             return new Triangle(p1, p2, p3);
         }
         

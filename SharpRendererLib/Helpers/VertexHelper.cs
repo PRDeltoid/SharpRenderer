@@ -19,10 +19,10 @@ namespace SharpRendererLib.Helpers
             return matrix;
         } 
         
-        public static Point VertexToPoint(ViewPort viewPort, Matrix projection, Matrix modelView, Vertex vertex)
+        public static Point VertexToPoint(Vertex vertex, Matrix transformationMatrix)
         {
             Matrix matrixVert = VertexToMatrix(vertex);
-            Vertex screenVertex = MatrixHelper.MatrixToVertex(viewPort * projection * modelView * matrixVert);
+            Vertex screenVertex = MatrixHelper.MatrixToVertex(transformationMatrix * matrixVert);
             int x = (int)screenVertex.X;
             int y = (int)screenVertex.Y;
             return new Point(x, y);

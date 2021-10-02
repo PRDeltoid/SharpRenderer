@@ -4,8 +4,6 @@ namespace SharpRendererLib.Models
 {
     public class ModelView
     {
-        private Matrix _modelView;
-
         public ModelView(Camera camera, Vector3 center)
         {
             Camera = camera;

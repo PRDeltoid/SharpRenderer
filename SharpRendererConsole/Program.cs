@@ -31,10 +31,14 @@ namespace SharpRendererConsole
             Light lightVec = new Vector3(0, 0, 1);
 
             // Render the polygon
+            // Wiremesh
             // PolygonDrawer drawer = new(new WireMeshFaceDrawStrategy(new BresenhamLineDrawStrategy(), new RandomColorDrawStrategy(), camera, viewPort, modelView));
-            // PolygonDrawer drawer = new(new FaceDrawStrategy(new FlatColorDrawStrategy(Color.White), new GouraudShading(), camera, viewPort, modelView));
-            // PolygonDrawer drawer = new(new FaceDrawStrategy(new TextureColorDrawStrategy(texture), new FlatShadingStrategy(), camera, viewPort, modelView));
-            PolygonDrawer drawer = new(new FaceDrawStrategy(new TextureColorDrawStrategy(texture), new GouraudShading(), camera, viewPort, modelView));
+            
+            // Shader-based
+            // Shader shader = new(new TextureColorDrawStrategy(texture), new FlatShadingStrategy());
+            // Shader shader = new(new FlatColorDrawStrategy(Color.White), new GouraudShading());
+            Shader shader = new(new TextureColorDrawStrategy(texture), new GouraudShading());
+            PolygonDrawer drawer = new(new FaceDrawStrategy(shader, camera, viewPort, modelView));
             
             drawer.Draw(pixelBuff, polygon, lightVec, zBuffer);
 

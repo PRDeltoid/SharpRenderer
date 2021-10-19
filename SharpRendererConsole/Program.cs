@@ -21,14 +21,16 @@ namespace SharpRendererConsole
             // string path = Path.Combine("../../../res", "teapot.obj");
             string path = Path.Combine("../../../res", "african_head.obj");
             string texturePath = Path.Combine("../../../res", "african_head_diffuse.tga");
+            string normalMapPath = Path.Combine("../../../res", "african_head_normalmap.tga");
             
             Polygon polygon = ObjFileParser.ParseFile(path);
             Texture texture = new Texture(TgaFileParser.ParseFile(texturePath));
+            NormalMap normalMap = new NormalMap(TgaFileParser.ParseFile(normalMapPath));
             ViewPort viewPort = new ViewPort((int)(width * 0.75f), (int)(height * 0.75f), 255, width / 8, height / 8);
             Camera camera = new Camera(1, 1, 3);
             Vector3 center = new Vector3(0, 0, 0);
             ModelView modelView = new ModelView(camera, center);
-            Light lightVec = new Vector3(0, 0, 1);
+            Light lightVec = new Vector3(1, 1, 1);
 
             // Render the polygon
             // Wiremesh
@@ -36,8 +38,8 @@ namespace SharpRendererConsole
             
             // Shader-based
             // Shader shader = new(new TextureColorDrawStrategy(texture), new FlatShadingStrategy());
-            // Shader shader = new(new FlatColorDrawStrategy(Color.White), new GouraudShading());
-            Shader shader = new(new TextureColorDrawStrategy(texture), new GouraudShading());
+            // Shader shader = new(new FlatColorDrawStrategy(Color.White), new GouraudShading(normalMap));
+            Shader shader = new(new TextureColorDrawStrategy(texture), new GouraudShading(normalMap));
             PolygonDrawer drawer = new(new FaceDrawStrategy(shader, camera, viewPort, modelView));
             
             drawer.Draw(pixelBuff, polygon, lightVec, zBuffer);

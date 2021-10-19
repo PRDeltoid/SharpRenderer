@@ -9,16 +9,12 @@ namespace SharpRendererLib
         private readonly Texture _texture;
         private readonly int _width;
         private readonly int _height;
-
-        public bool ColorPerFace { get; }
         
         public TextureColorDrawStrategy(Texture texture)
         {
             _texture = texture;
             _width = texture.Width;
             _height = texture.Height;
-            // Texture is always colored per-pixel, not per-face
-            ColorPerFace = false;
         }
 
         private static (float, float) GetTextureCoordinateForPoint(Face face, Vector3 barycentric)

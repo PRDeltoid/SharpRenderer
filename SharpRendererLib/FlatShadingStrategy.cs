@@ -15,8 +15,5 @@ namespace SharpRendererLib
             float intensity = Vector3.Dot(faceNormal, light);
             return intensity;
         }
-
-        // Flat shading is always per-face, not per-point
-        public bool ShadePerFace => true;
     }
 }

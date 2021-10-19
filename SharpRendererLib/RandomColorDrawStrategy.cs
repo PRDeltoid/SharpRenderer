@@ -9,14 +9,6 @@ namespace SharpRendererLib
     {
         private static readonly Random Rand = new Random();
 
-        public bool ColorPerFace { get; }
-        
-        public RandomColorDrawStrategy(bool perFace = true)
-        {
-            // RandomColor is *generally* per-face, but can be per-pixel for fun "static" pattern results
-            ColorPerFace = perFace;
-        }
-
         public Color GetColor(Face face, Vector3 barycentricCoord)
         {
             return GenerateRandomColor();
